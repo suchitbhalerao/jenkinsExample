@@ -10,6 +10,7 @@
 import groovy.json.JsonSlurper
 import jenkins.model.*
  class Test { 
+  m1(){
    try {
    node {
    stage '\u2776 Stage 1'
@@ -32,4 +33,5 @@ import jenkins.model.*
     if (err) {
         throw err
     }
+  }
  }
