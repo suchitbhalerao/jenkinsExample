@@ -17,7 +17,8 @@ import jenkins.model.*
    def workspace = pwd()
    echo "\u2600 workspace=${workspace}"
    JsonSlurper jsonParser = new JsonSlurper();
-   List<Map> jsonMap = (List<Map>)jsonParser.parse(new FileReader("java-config.json")); 
+    echo "${env.WORKSPACE}" 
+   List<Map> jsonMap = (List<Map>)jsonParser.parse(new FileReader("/java-config.json")); 
    print jsonMap
 
    stage '\u2777 Stage 2'
