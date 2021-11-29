@@ -8,6 +8,7 @@
  
 
 import groovy.json.JsonSlurper
+import jenkins.model.*
  
 try {
 node {
