@@ -1,10 +1,17 @@
-pipeline {
-    agent { docker { image 'maven:3.3.3' } }
-    stages {
-        stage('build') {
-            steps {
-                sh 'mvn --version'
-            }
-        }
+stages {
+  stage('Build') {
+    steps {
+      sh 'echo "This is my first step"'
     }
+  }
+  stage('Test') {
+    steps
+      sh 'echo "This is my Test step"'
+    }
+  }
+  stage('Deploy') {
+    steps {
+      sh 'echo "This is my Deploy step"'
+    }
+  }
 }
