@@ -6,12 +6,7 @@
         * by wilsonmar@gmail.com 
  */
  
-import hudson.model.*
-import hudson.EnvVars
-import groovy.json.JsonSlurperClassic
-import groovy.json.JsonBuilder
-import groovy.json.JsonOutput
-import java.net.URL
+
 import groovy.json.JsonSlurper
  
 try {
@@ -29,15 +24,8 @@ stage '\u2777 Stage 2'
 } // node
 } // try end
 catch (exc) {println exec} finally {
-  
- (currentBuild.result != "ABORTED") && node("master") {
-     // Send e-mail notifications for failed or unstable builds.
-     // currentBuild.result must be non-null for this step to work.
-     step([$class: 'Mailer',
-        notifyEveryUnstableBuild: true,
-        recipients: "suchit.bhalerao@gmail.com",
-        sendToIndividuals: true])
- }
+  print "in finally" 
+  }
  
  // Must re-throw exception to propagate error:
  if (err) {
