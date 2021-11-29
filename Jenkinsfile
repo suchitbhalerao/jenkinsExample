@@ -12,6 +12,7 @@ import groovy.json.JsonSlurperClassic
 import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
 import java.net.URL
+import groovy.json.JsonSlurper
  
 try {
 node {
@@ -20,29 +21,21 @@ echo "\u2600 BUILD_URL=${env.BUILD_URL}"
  
 def workspace = pwd()
 echo "\u2600 workspace=${workspace}"
+JsonSlurper jsonParser = new JsonSlurper();
+List<Map> jsonMap = (List<Map>)jsonParser.parse(new FileReader("java-config.json")); 
+print jsonMap
  
 stage '\u2777 Stage 2'
 } // node
 } // try end
-catch (exc) {
-/*
- err = caughtError
- currentBuild.result = "FAILURE"
- String recipient = 'infra@lists.jenkins-ci.org'
- mail subject: "${env.JOB_NAME} (${env.BUILD_NUMBER}) failed",
-         body: "It appears that ${env.BUILD_URL} is failing, somebody should do something about that",
-           to: recipient,
-      replyTo: recipient,
- from: 'noreply@ci.jenkins.io'
-*/
-} finally {
+catch (exc) {println exec} finally {
   
  (currentBuild.result != "ABORTED") && node("master") {
      // Send e-mail notifications for failed or unstable builds.
      // currentBuild.result must be non-null for this step to work.
      step([$class: 'Mailer',
         notifyEveryUnstableBuild: true,
-        recipients: "${email_to}",
+        recipients: "suchit.bhalerao@gmail.com",
         sendToIndividuals: true])
  }
  
