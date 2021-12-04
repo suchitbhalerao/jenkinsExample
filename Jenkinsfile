@@ -18,7 +18,7 @@ import jenkins.model.*
    echo "\u2600 workspace=${workspace}"
    JsonSlurper jsonParser = new JsonSlurper();
     echo "${env.WORKSPACE}" 
-   List<Map> jsonMap = (List<Map>)jsonParser.parse(new FileReader("/var/jenkins_home/workspace/my-pipeline_main/java-config.json")); 
+   List<Map> jsonMap = (List<Map>)jsonParser.parse(new FileReader("/var/jenkins_home/workspace/jenkinsExample_main/java-config.json")); 
    print jsonMap
 
    stage '\u2777 Stage 2'
